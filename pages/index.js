@@ -1,4 +1,20 @@
+import { useEffect, useState } from 'react';
 
+export default function StakingStreetApp() {
+  const [tgUser, setTgUser] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://telegram.org/js/telegram-web-app.js';
+      script.onload = () => {
+        if (window.Telegram?.WebApp?.initDataUnsafe?.user) {
+          setTgUser(window.Telegram.WebApp.initDataUnsafe.user);
+        }
+      };
+      document.body.appendChild(script);
+    }
+  }, []);
 import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 
@@ -35,7 +51,7 @@ export default function Home() {
   }, []);
 
   const completeTask = async () => {
-    const userId = 'user-123';
+    const userId = tgUser?.id || 'anonymous';
     if (!taskCompleted) {
       const newCoins = coins + 10;
       setCoins(newCoins);
