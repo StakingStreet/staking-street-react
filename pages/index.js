@@ -4,17 +4,17 @@ import Link from 'next/link';
 export default function StartScreen() {
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      {/* Фон */}
+      {/* Фоновое изображение */}
       <Image
         src="/start-screen.jpg"
         alt="Staking Street"
         fill
-        style={{ objectFit: 'cover' }}
+        style={{ objectFit: 'cover', zIndex: -1 }}
         priority
       />
 
-      {/* Кнопки снизу по центру */}
-      <div className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-4 z-10 px-4">
+      {/* Кнопки по центру снизу */}
+      <div className="absolute bottom-10 w-full flex flex-col items-center gap-4 z-10 px-4">
         <button className="bg-yellow-400 text-white font-bold text-xl px-10 py-4 rounded-2xl shadow-xl hover:bg-yellow-500 transition">
           ИГРАТЬ
         </button>
